@@ -29,7 +29,6 @@ namespace GoL {
     }
 
     void World::displayWorld() {
-        system("cls");
         for (int r = 0; r < _height; r++) {
             for (int c = 0; c < _width; c++) {
                 std::cout << (grid[c][r] ? '*' : '.');
@@ -39,20 +38,31 @@ namespace GoL {
         }
     }
 
-    void World::nextIteration() {
+    bool World::nextIteration() {
         bool new_grid[_width][_height];
+        bool empty = true;
         for (int r = 0; r < _height; r++) {
             for (int c = 0; c < _width; c++) {
                 int neighbours_count = neighbours(c, r);
                 if (grid[c][r]) {
-                    new_grid[c][r] = (neighbours_count < 2 || neighbours_count > 3) ? false : true;
+                    if (neighbours_count < 2 || neighbours_count > 3) {
+                        new_grid[c][r] = false;
+                    } else {
+                        new_grid[c][r] = true;
+                        empty = false;
+                    }
                 } else {
-                    new_grid[c][r] = neighbours_count == 3 ? true : false;
+                    if (neighbours_count == 3) {
+                        new_grid[c][r] = true;
+                        empty = false;
+                    } else {
+                        new_grid[c][r] = false;
+                    }
                 }
             }
         }
         memcpy(grid, new_grid, sizeof(grid));
-        displayWorld();
+        return empty;
     }
 
     int World::neighbours(int c, int r) {

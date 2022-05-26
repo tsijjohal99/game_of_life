@@ -14,7 +14,7 @@ namespace GoL {
 
         bool checkInput(std::string input);
         void displayWorld();
-        void nextIteration();
+        bool nextIteration();
         int neighbours(int c, int r);
         void restartWorld();
     };

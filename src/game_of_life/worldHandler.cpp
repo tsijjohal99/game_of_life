@@ -16,8 +16,9 @@ namespace GoL {
     void WorldHandler::iterationLoop() {
         bool looping = true;
         while (looping) {
+            system("cls");
             std::cout << "Iteration " << ++iteration << '\n';
-            world.nextIteration();
+            looping = !world.nextIteration();
             world.displayWorld();
             std::cout << "Press p to pause for 5 seconds\n";
             std::cout << "Press r to restart\n";

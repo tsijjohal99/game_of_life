@@ -16,5 +16,6 @@ namespace GoL {
         void displayWorld();
         void nextIteration();
         int neighbours(int c, int r);
+        void restartWorld();
     };
 }  // namespace GoL

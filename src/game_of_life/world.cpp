@@ -65,4 +65,8 @@ namespace GoL {
         }
         return count;
     }
+
+    void World::restartWorld() {
+        memcpy(grid, initial_grid, sizeof(grid));
+    }
 }  // namespace GoL
